@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "sec_user")
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +27,4 @@ public class User {
 
     @Column(name = "email")
     private String email;
-
-    @OneToMany(mappedBy = "user")
-    private List<Rental> rentals;
 }
