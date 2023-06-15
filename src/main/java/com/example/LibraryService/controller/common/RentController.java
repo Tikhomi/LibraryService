@@ -1,6 +1,6 @@
 package com.example.LibraryService.controller.common;
 
-import com.example.LibraryService.entity.Rent;
+import com.example.LibraryService.entity.RentEntity;
 import com.example.LibraryService.service.RentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,27 +19,27 @@ public class RentController {
     * Контроллер для создания новой аренды
     */
     @PostMapping
-    public ResponseEntity<Rent> createRent(@RequestBody Rent rent) {
-        Rent createdRent = rentService.createRent(rent);
-        return new ResponseEntity<>(createdRent, HttpStatus.CREATED);
+    public ResponseEntity<RentEntity> createRent(@RequestBody RentEntity rentEntity) {
+        RentEntity createdRentEntity = rentService.createRent(rentEntity);
+        return new ResponseEntity<>(createdRentEntity, HttpStatus.CREATED);
     }
 
     /*
     * Контроллер для получения списка всех аренд
     */
     @GetMapping
-    public ResponseEntity<List<Rent>> getAllRents() {
-        List<Rent> rents = rentService.getAllRents();
-        return new ResponseEntity<>(rents, HttpStatus.OK);
+    public ResponseEntity<List<RentEntity>> getAllRents() {
+        List<RentEntity> rentEntities = rentService.getAllRents();
+        return new ResponseEntity<>(rentEntities, HttpStatus.OK);
     }
 
     /*
     * Контроллер для обновления данных конкретной аренды
     */
     @PutMapping("/{id}")
-    public ResponseEntity<Rent> updateRent(@PathVariable Long id, @RequestBody Rent rent) {
-        Rent updatedRent = rentService.updateRent(id, rent);
-        return new ResponseEntity<>(updatedRent, HttpStatus.OK);
+    public ResponseEntity<RentEntity> updateRent(@PathVariable Long id, @RequestBody RentEntity rentEntity) {
+        RentEntity updatedRentEntity = rentService.updateRent(id, rentEntity);
+        return new ResponseEntity<>(updatedRentEntity, HttpStatus.OK);
     }
 
     /*
@@ -55,9 +55,9 @@ public class RentController {
     * Контроллер для получения конкретной аренды по ее идентификатору
     */
     @GetMapping("/{id}")
-    public ResponseEntity<Rent> getRentById(@PathVariable Long id) {
-        Rent rent = rentService.getRentById(id);
-        return new ResponseEntity<>(rent, HttpStatus.OK);
+    public ResponseEntity<RentEntity> getRentById(@PathVariable Long id) {
+        RentEntity rentEntity = rentService.getRentById(id);
+        return new ResponseEntity<>(rentEntity, HttpStatus.OK);
     }
 
 
