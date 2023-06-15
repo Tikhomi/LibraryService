@@ -1,13 +1,15 @@
 package com.example.LibraryService.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "book")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,6 @@ public class Book {
     @Column(name = "nm_author")
     private String author;
 
-    @OneToMany(mappedBy = "book")
-    private List<Rental> rentals;
+    @Column(name = "availability")
+    private boolean availability;
 }
