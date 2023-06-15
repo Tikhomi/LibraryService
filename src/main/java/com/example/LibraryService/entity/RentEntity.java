@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Table(name = "sec_rent")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor//комент
 public class RentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
