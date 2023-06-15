@@ -1,6 +1,6 @@
 package com.example.LibraryService.service;
 
-import com.example.LibraryService.entity.Rent;
+import com.example.LibraryService.entity.RentEntity;
 import com.example.LibraryService.repository.RentRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,38 +19,38 @@ public class RentService {
 
     /**
      * Создание новой аренды.
-     * @param rent данные аренды.
+     * @param rentEntity данные аренды.
      * @return созданную аренду с назначенным идентификатором.
      */
-    public Rent createRent(Rent rent) {
-        return rentRepository.save(rent);
+    public RentEntity createRent(RentEntity rentEntity) {
+        return rentRepository.save(rentEntity);
     }
 
     /**
      * Получение списка всех аренд.
      * @return список всех аренд.
      */
-    public List<Rent> getAllRents() {
+    public List<RentEntity> getAllRents() {
         return rentRepository.findAll();
     }
 
     /**
      * Обновление данных конкретной аренды.
      * @param id идентификатор аренды.
-     * @param newRent обновленные данные аренды.
+     * @param newRentEntity обновленные данные аренды.
      * @return обновленную аренду.
      * @throws EntityNotFoundException если аренда с указанным идентификатором не найдена.
      */
-    public Rent updateRent(Long id, Rent newRent) {
-        Optional<Rent> optionalRent = rentRepository.findById(id);
+    public RentEntity updateRent(Long id, RentEntity newRentEntity) {
+        Optional<RentEntity> optionalRent = rentRepository.findById(id);
         if (optionalRent.isPresent()) {
-            Rent existingRent = optionalRent.get();
-            existingRent.setStartTime(newRent.getStartTime());
-            existingRent.setEndTime(newRent.getEndTime());
-            existingRent.setDelay(newRent.getDelay());
-            return rentRepository.save(existingRent);
+            RentEntity existingRentEntity = optionalRent.get();
+            existingRentEntity.setStartTime(newRentEntity.getStartTime());
+            existingRentEntity.setEndTime(newRentEntity.getEndTime());
+            existingRentEntity.setDelay(newRentEntity.getDelay());
+            return rentRepository.save(existingRentEntity);
         } else {
-            throw new EntityNotFoundException("Rent not found with id: " + id);
+            throw new EntityNotFoundException("RentEntity not found with id: " + id);
         }
     }
 
@@ -60,12 +60,12 @@ public class RentService {
      * @throws EntityNotFoundException если аренда с указанным идентификатором не найдена.
      */
     public void deleteRent(Long id) {
-        Optional<Rent> optionalRent = rentRepository.findById(id);
+        Optional<RentEntity> optionalRent = rentRepository.findById(id);
         if (optionalRent.isPresent()) {
-            Rent rent = optionalRent.get();
-            rentRepository.delete(rent);
+            RentEntity rentEntity = optionalRent.get();
+            rentRepository.delete(rentEntity);
         } else {
-            throw new EntityNotFoundException("Rent not found with id: " + id);
+            throw new EntityNotFoundException("RentEntity not found with id: " + id);
         }
     }
 
@@ -75,12 +75,12 @@ public class RentService {
      * @return аренду с указанным идентификатором.
      * @throws EntityNotFoundException если аренда с указанным идентификатором не найдена.
      */
-    public Rent getRentById(Long id) {
-        Optional<Rent> optionalRent = rentRepository.findById(id);
+    public RentEntity getRentById(Long id) {
+        Optional<RentEntity> optionalRent = rentRepository.findById(id);
         if (optionalRent.isPresent()) {
             return optionalRent.get();
         } else {
-            throw new EntityNotFoundException("Rent not found with id: " + id);
+            throw new EntityNotFoundException("RentEntity not found with id: " + id);
         }
     }
 }
