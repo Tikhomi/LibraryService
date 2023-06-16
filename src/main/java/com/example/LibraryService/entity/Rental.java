@@ -12,13 +12,13 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rental")
-    private Long id_rental;
+    private Long id;
 
     @Column(name = "dt_start_time")
-    private Date dt_start_time;
+    private Date startTime;
 
     @Column(name = "dt_end_time")
-    private Date dt_end_time;
+    private Date endTime;
 
     @Column(name = "overdue")
     private Integer overdue;
