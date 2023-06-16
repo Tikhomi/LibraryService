@@ -2,6 +2,7 @@ package com.example.LibraryService.service;
 
 import com.example.LibraryService.dto.BookDTO;
 import com.example.LibraryService.entity.Book;
+import com.example.LibraryService.entity.Rental;
 import com.example.LibraryService.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class BookService {
     }
 
     private BookDTO convertToDTO(Book book) {
-        return new BookDTO(book.getTitle(), book.getAuthor(), book.isAvailability());
+        return new BookDTO(book.getTitle(), book.getAuthor(), (Rental) book.getRentals());
     }
     public Book save(Book book) {
         return bookRepository.save(book);

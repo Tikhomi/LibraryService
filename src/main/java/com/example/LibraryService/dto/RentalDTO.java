@@ -3,6 +3,8 @@ package com.example.LibraryService.dto;
 import com.example.LibraryService.entity.Rental;
 import lombok.Data;
 
+import java.time.temporal.ChronoUnit;
+
 @Data
 public class RentalDTO {
     private Long id;
@@ -18,4 +20,5 @@ public class RentalDTO {
         model.setOverdue(entity.getOverdue());
         return model;
     }
+
 }
