@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_rental_table" author="postgres">
+        <createTable tableName="rental">
+            <column autoIncrement="true" name="id_rental" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="dt_start_time" type="DATE"/>
+            <column name="dt_end_time" type="DATE"/>
+            <column name="overdue" type="varchar(64)"/>
+            <column name="is_active" type="boolean"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

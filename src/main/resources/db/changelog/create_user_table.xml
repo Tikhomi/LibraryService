@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_user_table" author="postgres">
+        <createTable tableName="sec_user">
+            <column autoIncrement="true" name="id_user" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(64)"/>
+            <column name="last_name" type="varchar(64)"/>
+            <column name="password" type="varchar(64)"/>
+            <column name="email" type="varchar(64)"/>
+            <column name="id_rental" type="bigint">
+                <constraints foreignKeyName="fk_sec_user_1" referencedTableName="rental" referencedColumnNames="id_rental"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
