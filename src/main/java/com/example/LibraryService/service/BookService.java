@@ -21,21 +21,18 @@ public class BookService {
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookRepository.findAll();
         return books.stream()
-                .map(this::convertToDTO)
+                .map(BookDTO::toModel)
                 .collect(Collectors.toList());
     }
 
     public BookDTO getBookByTitle(String title) {
         Book book = bookRepository.findByTitle(title);
         if (book != null) {
-            return convertToDTO(book);
+            return BookDTO.toModel(book);
         }
         return null;
     }
 
-    private BookDTO convertToDTO(Book book) {
-        return new BookDTO(book.getTitle(), book.getAuthor());
-    }
     public Book save(Book book) {
         return bookRepository.save(book);
     }

@@ -1,5 +1,6 @@
 package com.example.LibraryService.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,9 +29,11 @@ public class Rental {
 
     @ManyToOne
     @JoinColumn(name = "id_book")
+    @JsonIgnore
     private Book book;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
+    @JsonIgnore
     private User user;
 }

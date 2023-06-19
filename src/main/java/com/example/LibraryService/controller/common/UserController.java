@@ -4,7 +4,7 @@ import com.example.LibraryService.dto.UserDTO;
 import com.example.LibraryService.entity.User;
 import com.example.LibraryService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,19 +24,19 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public UserDTO getOne(@PathVariable Long id) {
         return userService.getOne(id);
     }
 
     @PostMapping
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void addUser(@RequestBody User user) {
         userService.addUserInSystem(user);
     }
 
     @DeleteMapping("admin/{id}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(@PathVariable Long id) {
         userService.delete(id);
     }

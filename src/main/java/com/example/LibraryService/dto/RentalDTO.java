@@ -11,6 +11,7 @@ public class RentalDTO {
     private Date startTime;
     private Date endTime;
     private Integer overdue;
+    private boolean isActive;
 
     public static RentalDTO toModel(Rental entity) {
         RentalDTO model = new RentalDTO();
@@ -18,6 +19,7 @@ public class RentalDTO {
         model.setStartTime(entity.getStartTime());
         model.setEndTime(entity.getEndTime());
         model.setOverdue(entity.getOverdue());
+        model.setActive(entity.isActive());
         return model;
     }
 }
