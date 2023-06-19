@@ -12,6 +12,7 @@
             <column name="first_name" type="varchar(64)"/>
             <column name="last_name" type="varchar(64)"/>
             <column name="password" type="varchar(64)"/>
+            <column name="role" type="varchar(64)"/>
             <column name="email" type="varchar(64)"/>
             <column name="id_rental" type="bigint">
                 <constraints foreignKeyName="fk_sec_user_1" referencedTableName="rental" referencedColumnNames="id_rental"/>

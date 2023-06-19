@@ -30,6 +30,10 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "user")
     private List<Rental> rentals;
 }

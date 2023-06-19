@@ -7,10 +7,8 @@ import lombok.Data;
 public class BookDTO {
     private String title;
     private String author;
-    private Rental rental;
     public BookDTO(String title, String author, Rental rental) {
         this.title = title;
         this.author = author;
-        this.rental = rental;
     }
 }

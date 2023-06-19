@@ -7,6 +7,7 @@ import com.example.LibraryService.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,8 @@ public class BookService {
     }
 
     private BookDTO convertToDTO(Book book) {
-        return new BookDTO(book.getTitle(), book.getAuthor(), (Rental) book.getRentals());
+        List<Rental> rentals = new ArrayList<>(book.getRentals());
+        return new BookDTO(book.getTitle(), book.getAuthor(), (Rental) rentals);
     }
     public Book save(Book book) {
         return bookRepository.save(book);
