@@ -8,16 +8,16 @@
         <insert tableName="sec_user">
             <column name="first_name" value="Alex" />
             <column name="last_name" value="Mercer" />
-            <column name="password" value="123" />
+            <column name="password" value="$2a$12$KB4xNDzkb79HlOkr30g8LuygGp15u/CKS1pfElfbrGCjPFQs1sr.S" />
             <column name="email" value="alex@mail.ru" />
-            <column name="id_rental" value="1" />
+            <column name="role" value="ROLE_USER"/>
         </insert>
         <insert tableName="sec_user">
             <column name="first_name" value="Sara" />
             <column name="last_name" value="Martinez" />
-            <column name="password" value="123" />
+            <column name="password" value="$2a$12$KB4xNDzkb79HlOkr30g8LuygGp15u/CKS1pfElfbrGCjPFQs1sr.S" />
             <column name="email" value="sarah@mail.ru" />
-            <column name="id_rental" value="2" />
+            <column name="role" value="ROLE_ADMIN"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

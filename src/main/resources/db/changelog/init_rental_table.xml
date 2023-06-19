@@ -10,12 +10,16 @@
             <column name="dt_end_time" value="2023-05-20" />
             <column name="overdue" value="0"/>
             <column name="is_active" value="false" />
+            <column name="id_user" value="1"/>
+            <column name="id_book" value="1"/>
         </insert>
         <insert tableName="rental">
             <column name="dt_start_time" value="2023-04-18" />
             <column name="dt_end_time" value="2023-04-20" />
             <column name="overdue" value="5"/>
             <column name="is_active" value="false" />
+            <column name="id_user" value="2"/>
+            <column name="id_book" value="2"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

@@ -1,11 +1,8 @@
 package com.example.LibraryService.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -16,14 +13,6 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rental")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_book")
-    private Book book;
-
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
 
     @Column(name = "dt_start_time")
     private Date startTime;
@@ -37,10 +26,11 @@ public class Rental {
     @Column(name = "is_active")
     private boolean isActive;
 
-//    private long calculateDaysOverdue() {
-////        String formattedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//        Date nowDate =
-//        int result = LocalDate.now().compareTo(endTime);
-////        if (isActive && )
-//    }
+    @ManyToOne
+    @JoinColumn(name = "id_book")
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }

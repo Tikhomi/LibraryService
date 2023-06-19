@@ -13,6 +13,12 @@
             <column name="dt_end_time" type="DATE"/>
             <column name="overdue" type="varchar(64)"/>
             <column name="is_active" type="boolean"/>
+            <column name="id_user" type="bigint">
+                <constraints foreignKeyName="fk_sec_user_1" referencedTableName="sec_user" referencedColumnNames="id_user"/>
+            </column>
+            <column name="id_book" type="bigint">
+                <constraints foreignKeyName="fk_book_1" referencedTableName="book" referencedColumnNames="id_book"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

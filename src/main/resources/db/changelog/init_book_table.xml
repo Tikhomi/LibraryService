@@ -8,12 +8,10 @@
         <insert tableName="book">
             <column name="nm_title" value="The Kingdom of Crooked Mirrors" />
             <column name="nm_author" value="Vitaly Gubarev" />
-            <column name="id_rental" value="1" />
         </insert>
         <insert tableName="book">
             <column name="nm_title" value="Harry Potter and the Sorcerer’s Stone" />
             <column name="nm_author" value="J. K. Rowling" />
-            <column name="id_rental" value="2" />
         </insert>
     </changeSet>
 </databaseChangeLog>
