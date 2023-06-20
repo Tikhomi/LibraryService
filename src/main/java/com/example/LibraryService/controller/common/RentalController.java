@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/rental")
 public class RentalController {
@@ -29,10 +31,11 @@ public class RentalController {
     /*
      * Контроллер для получения списка всех аренд
      */
-    @GetMapping
-    public RentalDTO getAllRents() {
-        return (RentalDTO) rentalService.getAllRents();
+    @GetMapping("/all")
+    public List<RentalDTO> getAllRents() {
+        return rentalService.getAllRents();
     }
+
 
 
     /*

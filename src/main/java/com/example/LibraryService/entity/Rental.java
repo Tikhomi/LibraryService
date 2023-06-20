@@ -1,8 +1,9 @@
 package com.example.LibraryService.entity;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -22,4 +23,17 @@ public class Rental {
 
     @Column(name = "overdue")
     private Integer overdue;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    @ManyToOne
+    @JoinColumn(name = "id_book")
+    @JsonIgnore
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    private User user;
 }

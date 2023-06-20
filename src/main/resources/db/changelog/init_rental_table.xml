@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="init_rental_table" author="liquibase">
+        <insert tableName="rental">
+            <column name="dt_start_time" value="2023-05-15" />
+            <column name="dt_end_time" value="2023-05-20" />
+            <column name="overdue" value="0"/>
+            <column name="is_active" value="false" />
+            <column name="id_user" value="1"/>
+            <column name="id_book" value="1"/>
+        </insert>
+        <insert tableName="rental">
+            <column name="dt_start_time" value="2023-04-18" />
+            <column name="dt_end_time" value="2023-04-20" />
+            <column name="overdue" value="5"/>
+            <column name="is_active" value="false" />
+            <column name="id_user" value="2"/>
+            <column name="id_book" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

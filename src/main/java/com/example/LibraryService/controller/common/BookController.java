@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
@@ -19,7 +18,7 @@ public class BookController {
         this.bookService = bookService;
     }
     @GetMapping("/books")
-    public List<BookDTO> getAllBooks() throws AccessDeniedException {
+    public List<BookDTO> getAllBooks() {
         return bookService.getAllBooks();
     }
     @GetMapping("/book/{title}")

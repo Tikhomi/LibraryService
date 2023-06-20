@@ -23,8 +23,8 @@ public class UserService {
     }
 
     public List<UserDTO> getAllUsers() {
-        List<User> books = userRepository.findAll();
-        return books.stream()
+        List<User> users = userRepository.findAll();
+        return users.stream()
                 .map(UserDTO::toModel)
                 .collect(Collectors.toList());
     }

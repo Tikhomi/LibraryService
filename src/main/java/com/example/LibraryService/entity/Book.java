@@ -1,7 +1,9 @@
 package com.example.LibraryService.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -18,6 +20,6 @@ public class Book {
     @Column(name = "nm_author")
     private String author;
 
-    @Column(name = "availability")
-    private boolean availability;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
+    private List<Rental> rentals;
 }
