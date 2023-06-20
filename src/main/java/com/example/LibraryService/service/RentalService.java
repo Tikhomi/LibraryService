@@ -63,9 +63,4 @@ public class RentalService {
         Rental optionalRent = rentalRepository.findById(id).get();
         return RentalDTO.toModel(optionalRent);
     }
-
-    public Long deleteRental(Long id) {
-        rentalRepository.deleteById(id);
-        return id;
-    }
 }
