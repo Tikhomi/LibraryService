@@ -19,4 +19,23 @@ public class ReportController {
         response.setHeader(headerKey, headerValue);
         reportService.generateExcel(response);
     }
+
+    @GetMapping("/excel/last-month")
+    public void generateLastMonthReport(HttpServletResponse response) throws Exception {
+        response.setContentType("application/octet-stream");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment;filename=rentals_last_month.xls";
+        response.setHeader(headerKey, headerValue);
+        reportService.generateLastMonthReport(response);
+    }
+
+    @GetMapping("/excel/last-year")
+    public void generateLastYearReport(HttpServletResponse response) throws Exception {
+        response.setContentType("application/octet-stream");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=rentals_last_year.xls";
+        response.setHeader(headerKey, headerValue);
+        reportService.generateLastYearReport(response);
+    }
+
 }
