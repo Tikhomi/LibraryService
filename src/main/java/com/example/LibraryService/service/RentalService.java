@@ -6,8 +6,10 @@ import com.example.LibraryService.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,5 +69,30 @@ public class RentalService {
     public Long deleteRental(Long id) {
         rentalRepository.deleteById(id);
         return id;
+    }
+
+    public void processRentals() {
+        List<Rental> activeRentals = rentalRepository.findActiveRentals();
+
+        for (Rental rental : activeRentals) {
+            if (rental.getEndTime().before(new Date())) {
+                // Аренда просрочена, начислить штраф
+                rental.setOverdue(calculateOverdueDays(rental.getEndTime()));
+            }
+
+            if (rental.isActive() && rental.getOverdue() == 0) {
+                // Завершение аренды, изменить статус
+                rental.setActive(false);
+            }
+
+            rentalRepository.save(rental);
+        }
+    }
+
+    private int calculateOverdueDays(Date endTime) {
+        Date currentDate = new Date();
+        long diffInMillies = Math.abs(currentDate.getTime() - endTime.getTime());
+        long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return (int) diffInDays;  // Вычитаем 10 дней, так как аренда идет на 10 дней
     }
 }
