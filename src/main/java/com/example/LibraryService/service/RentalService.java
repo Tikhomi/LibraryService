@@ -18,31 +18,17 @@ public class RentalService {
         this.rentalRepository = rentalRepository;
     }
 
-    /**
-     * Создание новой аренды.
-     * @param rentEntity данные аренды.
-     * @return созданную аренду с назначенным идентификатором.
-     */
     public Rental createRent(Rental rentEntity) {
         return rentalRepository.save(rentEntity);
     }
 
-    /**
-     * Получение списка всех аренд.
-     * @return список всех аренд.
-     */
     public List<RentalDTO> getAllRents() {
         List<Rental> rentals = rentalRepository.findAll();
         return rentals.stream()
-                .map(RentalDTO::toModel)
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Удаление конкретной аренды по ее идентификатору.
-     * @param id идентификатор аренды.
-     * @throws EntityNotFoundException если аренда с указанным идентификатором не найдена.
-     */
     public void deleteRent(Long id) {
         Optional<Rental> optionalRent = rentalRepository.findById(id);
         if (optionalRent.isPresent()) {
@@ -52,15 +38,15 @@ public class RentalService {
         }
     }
 
-    /**
-     * Получение конкретной аренды по ее идентификатору.
-     *
-     * @param id идентификатор аренды.
-     * @return аренду с указанным идентификатором.
-     * @throws EntityNotFoundException если аренда с указанным идентификатором не найдена.
-     */
     public RentalDTO getRentById(Long id) {
-        Rental optionalRent = rentalRepository.findById(id).get();
-        return RentalDTO.toModel(optionalRent);
+        Rental rental = rentalRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Rental not found with id: " + id));
+        return convertToDTO(rental);
+    }
+
+    private RentalDTO convertToDTO(Rental rental) {
+        return new RentalDTO(rental.getId(),
+                rental.getStartTime(), rental.getEndTime(), rental.getOverdue(), rental.isActive());
     }
 }
+

@@ -1,6 +1,5 @@
 package com.example.LibraryService.dto;
 
-import com.example.LibraryService.entity.Rental;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,13 +12,11 @@ public class RentalDTO {
     private Integer overdue;
     private boolean isActive;
 
-    public static RentalDTO toModel(Rental entity) {
-        RentalDTO model = new RentalDTO();
-        model.setId(entity.getId());
-        model.setStartTime(entity.getStartTime());
-        model.setEndTime(entity.getEndTime());
-        model.setOverdue(entity.getOverdue());
-        model.setActive(entity.isActive());
-        return model;
+    public RentalDTO(Long id, Date startTime, Date endTime, Integer overdue, boolean isActive) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.overdue = overdue;
+        this.isActive = isActive;
     }
 }

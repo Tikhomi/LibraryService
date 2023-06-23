@@ -1,27 +1,19 @@
 package com.example.LibraryService.dto;
 
-import com.example.LibraryService.entity.Book;
 import com.example.LibraryService.entity.Rental;
 import lombok.Data;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 public class BookDTO {
     private String title;
     private String author;
-    private List<RentalDTO> rentals;
+    private List<Rental> rentals;
 
-    public static BookDTO toModel(Book entity) {
-        BookDTO model = new BookDTO();
-        model.setTitle(entity.getTitle());
-        model.setAuthor(entity.getAuthor());
-        List<RentalDTO> rentalDTOS = entity.getRentals().stream()
-                .filter(Rental::isActive)
-                .map(RentalDTO::toModel)
-                .collect(Collectors.toList());
-        model.setRentals(rentalDTOS);
-        return model;
+    public BookDTO(String title, String author, List<Rental> rentals) {
+        this.title = title;
+        this.author = author;
+        this.rentals = rentals;
     }
 }
