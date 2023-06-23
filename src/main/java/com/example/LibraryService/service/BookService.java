@@ -2,6 +2,7 @@ package com.example.LibraryService.service;
 
 import com.example.LibraryService.dto.BookDTO;
 import com.example.LibraryService.entity.Book;
+import com.example.LibraryService.entity.Rental;
 import com.example.LibraryService.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +22,14 @@ public class BookService {
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookRepository.findAll();
         return books.stream()
-                .map(BookDTO::toModel)
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     public BookDTO getBookByTitle(String title) {
         Book book = bookRepository.findByTitle(title);
         if (book != null) {
-            return BookDTO.toModel(book);
+            return convertToDTO(book);
         }
         return null;
     }
@@ -40,5 +41,12 @@ public class BookService {
     public Long delete(Long id) {
         bookRepository.deleteById(id);
         return id;
+    }
+
+    private BookDTO convertToDTO(Book book) {
+        List<Rental> activeRentals = book.getRentals().stream()
+                .filter(Rental::isActive)
+                .collect(Collectors.toList());
+        return new BookDTO(book.getTitle(), book.getAuthor(), activeRentals);
     }
 }
