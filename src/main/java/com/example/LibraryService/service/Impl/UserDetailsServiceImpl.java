@@ -1,4 +1,4 @@
-package com.example.LibraryService;
+package com.example.LibraryService.service.Impl;
 
 import com.example.LibraryService.entity.User;
 import com.example.LibraryService.repository.UserRepository;

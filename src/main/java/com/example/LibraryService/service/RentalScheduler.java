@@ -1,8 +1,8 @@
-package com.example.LibraryService;
+package com.example.LibraryService.service;
 
 import com.example.LibraryService.entity.Rental;
 import com.example.LibraryService.repository.RentalRepository;
-import com.example.LibraryService.service.EmailSenderServiceImpl;
+import com.example.LibraryService.service.Impl.EmailSenderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,7 +19,7 @@ public class RentalScheduler {
     @Autowired
     private EmailSenderServiceImpl emailSenderService;
 
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void updateOverdue() {
         Iterable<Rental> rentals = rentalRepository.findAll();
         Date currentDate = new Date();
@@ -31,7 +31,14 @@ public class RentalScheduler {
 
                 String userEmail = rental.getUser().getEmail();
                 String subject = "Просроченная аренда";
-                String message = "Просрочилась аренда для пользователя " + rental.getUser().getLastName();
+                String message = "Уважаемый(ая) " + rental.getUser().getFirstName() + " "
+                        + rental.getUser().getLastName()
+                        + ",\n\n";
+                message += "Просим вас вернуть книгу '" + rental.getBook().getTitle()
+                        + "', которую вы взяли в нашей библиотеке.\n";
+                message += "Срок возврата этой книги истек. Пожалуйста, верните ее в библиотеку в ближайшее время.\n\n";
+                message += "Благодарим вас за использование наших услуг.\n";
+                message += "С наилучшими пожеланиями,\nВаша библиотека";
                 emailSenderService.sendEmail(userEmail, subject, message);
             }
         }
