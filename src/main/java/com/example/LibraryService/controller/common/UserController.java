@@ -78,7 +78,6 @@ public class UserController {
             User user = userRepository.findByEmail(email);
 
             if (user == null) {
-                // обработка ситуации, когда пользователь не найден
                 return ResponseEntity.notFound().build();
             }
 
@@ -88,11 +87,10 @@ public class UserController {
 
             UserRentalDTO userRentalDTO = new UserRentalDTO();
             userRentalDTO.setUserName(user.getFirstName() + " " + user.getLastName());
-            userRentalDTO.setSchedules(rentals);
+            userRentalDTO.setRentalList(rentals);
 
             return ResponseEntity.ok(userRentalDTO);
         }
-        // Если пользователь не аутентифицирован, возвращаем ответ с кодом 401 Unauthorized
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
