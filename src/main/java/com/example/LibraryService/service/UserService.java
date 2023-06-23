@@ -33,6 +33,9 @@ public class UserService {
         User user = userRepository.findById(id).get();
         return UserDTO.toModel(user);
     }
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     public Long delete(Long id) {
         userRepository.deleteById(id);
