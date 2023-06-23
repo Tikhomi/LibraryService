@@ -23,7 +23,7 @@ public class RentalController {
     /*
      * Контроллер для создания новой аренды
      */
-    @PostMapping
+    @PostMapping("/add")
     public void createRent(@RequestBody Rental rentEntity) {
         rentalService.createRent(rentEntity);
     }
@@ -35,9 +35,6 @@ public class RentalController {
     public List<RentalDTO> getAllRents() {
         return rentalService.getAllRents();
     }
-
-
-
     /*
      * Контроллер для удаления конкретной аренды
      */
@@ -55,5 +52,4 @@ public class RentalController {
         RentalDTO rental = rentalService.getRentById(id);
         return ResponseEntity.ok(rental);
     }
-
 }
