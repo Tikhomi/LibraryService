@@ -35,6 +35,9 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
         return convertToDTO(user);
     }
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     public Long delete(Long id) {
         userRepository.deleteById(id);

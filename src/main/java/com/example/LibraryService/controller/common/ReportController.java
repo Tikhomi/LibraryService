@@ -3,15 +3,17 @@ package com.example.LibraryService.controller.common;
 import com.example.LibraryService.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
+@RequestMapping("/excel")
 public class ReportController {
     @Autowired
     private ReportService reportService;
-    @GetMapping("/excel")
+    @GetMapping("")
     public void generateExcelReport(HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
@@ -20,7 +22,7 @@ public class ReportController {
         reportService.generateExcel(response);
     }
 
-    @GetMapping("/excel/last-month")
+    @GetMapping("/last-month")
     public void generateLastMonthReport(HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
@@ -29,7 +31,7 @@ public class ReportController {
         reportService.generateLastMonthReport(response);
     }
 
-    @GetMapping("/excel/last-year")
+    @GetMapping("/last-year")
     public void generateLastYearReport(HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
