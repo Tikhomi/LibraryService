@@ -1,12 +1,19 @@
 package com.example.LibraryService.dto;
 
-import com.example.LibraryService.entity.Rental;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class UserRentalDTO {
-    private String userName;
-    private List<Rental> rentalList;
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    public UserRentalDTO() {
+    }
+
+    public UserRentalDTO(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 }
