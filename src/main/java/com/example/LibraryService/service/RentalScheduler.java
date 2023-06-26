@@ -14,10 +14,9 @@ import java.util.Date;
 @Component
 @RequiredArgsConstructor
 public class RentalScheduler {
-    @Autowired
+
     private final RentalRepository rentalRepository;
-    @Autowired
-    private EmailSenderServiceImpl emailSenderService;
+    private final EmailSenderServiceImpl emailSenderService;
 
     @Scheduled(cron = "0 0 0 * * ?")
     public void updateOverdue() {
