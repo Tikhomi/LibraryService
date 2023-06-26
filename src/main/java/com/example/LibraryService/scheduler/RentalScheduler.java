@@ -1,10 +1,9 @@
-package com.example.LibraryService.service;
+package com.example.LibraryService.scheduler;
 
+import com.example.LibraryService.email.EmailSenderServiceImpl;
 import com.example.LibraryService.entity.Rental;
 import com.example.LibraryService.repository.RentalRepository;
-import com.example.LibraryService.service.Impl.EmailSenderServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,7 @@ public class RentalScheduler {
     private final RentalRepository rentalRepository;
     private final EmailSenderServiceImpl emailSenderService;
 
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(fixedDelay = 60000)
     public void updateOverdue() {
         Iterable<Rental> rentals = rentalRepository.findAll();
         Date currentDate = new Date();

@@ -1,6 +1,6 @@
-package com.example.LibraryService.controller.common;
+package com.example.LibraryService.report;
 
-import com.example.LibraryService.service.ReportService;
+import com.example.LibraryService.report.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

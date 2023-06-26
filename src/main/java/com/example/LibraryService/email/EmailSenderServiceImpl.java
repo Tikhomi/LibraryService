@@ -1,6 +1,6 @@
-package com.example.LibraryService.service.Impl;
+package com.example.LibraryService.email;
 
-import com.example.LibraryService.service.EmailSenderService;
+import com.example.LibraryService.email.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

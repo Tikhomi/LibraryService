@@ -1,4 +1,4 @@
-package com.example.LibraryService.service;
+package com.example.LibraryService.report;
 
 import com.example.LibraryService.entity.Rental;
 import com.example.LibraryService.repository.RentalRepository;
